@@ -17,17 +17,26 @@ class SermonController extends MHController
         $sermon = $this->findModel($id);
         $sermon->hits++;
         $sermon->save();
-        return ['reponse' => 'ok'];
+        return ['response' => 'ok'];
     }
 
     /**
      * @param $groupId
      * @return array
-     * old url: /sermons/json/#SermonsGroupId SermonsJsonListR GET
      */
-    public function actionGroupList($groupId)
+    public function actionList()
     {
-        $sermons = Sermon::find()->where(['sermonGroupId' => $groupId]);
+        $query = [];
+        $queryData = [];
+        if(isset($_GET['query'])) {
+            $queryData = $_GET['query'];
+        } else {
+            $queryData = \Yii::$app->request->post();
+        }
+        if(isset($queryData['category'])) {
+            $query['categoryId'] = intval($queryData['category']);
+        }
+        $sermons = Sermon::find()->where($query);
         return ['response' => $sermons->all()];
     }
 

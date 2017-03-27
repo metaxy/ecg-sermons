@@ -63,7 +63,7 @@ Ausgabe:
  
  `/sermon/feed`
 ## Einfügen
- `/sermon/insert`
+ `/sermon/create`
 ## Statistic
  `/sermon/hit/{id}`
 
