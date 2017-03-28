@@ -7,15 +7,19 @@ namespace app\models;
  * @package app\models
  *
  * @property string $title
+ * @property integer $groupId
  * @property string $language
  * @property string $picture
  * @property string $notes
  * @property string $filesJson
- * @property string $scripturesJson
+ * @property string $scripture
  * @property string $date
  * @property integer $hits
- * @property integer $sermonCategoryId
- * @property SermonCategory $sermonCategory
+ * @property string $seriesName
+ * @property string $speaker
+ *
+ * @property Group $group
+ *
  */
 
 class Sermon extends \yii\db\ActiveRecord
@@ -27,18 +31,18 @@ class Sermon extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'language'], 'required'],
-            [['title', 'language', 'picture', 'notes'], 'string'],
-            [['hits', 'sermonCategoryId'], 'integer'],
+            [['title', 'speaker'], 'required'],
+            [['title', 'language', 'picture', 'notes', 'speaker', 'seriesName'], 'string'],
+            [['hits', 'groupId'], 'integer'],
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSermonCategory()
+    public function getGroup()
     {
-        return $this->hasOne(SermonCategory::className(), ['sermonCategoryId' => 'id']);
+        return $this->hasOne(Group::className(), ['groupId' => 'id']);
     }
 
     public function getFiles()

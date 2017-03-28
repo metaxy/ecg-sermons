@@ -14,30 +14,34 @@ class m170116_145747_create_sermon_table extends Migration
     {
         $this->createTable('sermon', [
             'id' => $this->primaryKey(),
+            'groupId' => $this->integer(),
+
+            'date' => $this->date(),
+            'hits' => $this->integer(),
             'title' => $this->string(),
-            'language' => $this->string(),
+            'languageJson' => $this->text(),
+            'speaker' => $this->string(),
+
             'picture' => $this->string(),
             'notes' => $this->text(),
             'filesJson' => $this->text(),
-            'scripturesJson' => $this->text(),
-            'date' => $this->date(),
-            'hits' => $this->integer(),
-            'sermonCategoryId' => $this->integer()
+            'scripture' => $this->string(),
+            'seriesName' => $this->string()
         ]);
 
-        //sermonCategoryId
+        //groupId
         $this->createIndex(
-            'idx-sermon-sermonCategoryId',
+            'idx-sermon-groupId',
             'sermon',
-            'sermonCategoryId'
+            'groupId'
         );
 
-        // add foreign key for table `sermon_category`
+        // add foreign key for table `group`
         $this->addForeignKey(
-            'fk-sermon-sermonCategoryId',
+            'fk-sermon-groupId',
             'sermon',
-            'sermonCategoryId',
-            'sermon_category',
+            'groupId',
+            'group',
             'id',
             'CASCADE'//on delete
         );

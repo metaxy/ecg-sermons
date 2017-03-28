@@ -21,7 +21,6 @@ class SermonController extends MHController
     }
 
     /**
-     * @param $groupId
      * @return array
      */
     public function actionList()
@@ -33,10 +32,10 @@ class SermonController extends MHController
         } else {
             $queryData = \Yii::$app->request->post();
         }
-        if(isset($queryData['category'])) {
-            $query['categoryId'] = intval($queryData['category']);
+        if(isset($queryData['groupCode'])) {
+            $query['group.code'] = intval($queryData['groupCode']);
         }
-        $sermons = Sermon::find()->where($query);
+        $sermons = Sermon::find()->joinWith('group')->where($query);
         return ['response' => $sermons->all()];
     }
 

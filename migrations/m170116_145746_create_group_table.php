@@ -3,19 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `sermon_category`.
+ * Handles the creation of table `group`.
  */
-class m170116_145746_create_sermon_category_table extends Migration
+class m170116_145746_create_group_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('sermon_category', [
+        $this->createTable('group', [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
-            'code' => $this->string()
+            'code' => $this->string(),
         ]);
     }
 

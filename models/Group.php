@@ -3,15 +3,16 @@
 namespace app\models;
 
 /**
- * Class SermonCategory
+ * Class Group
  * @package app\models
- *
+ * @property string $name
+ * @property string $code
  */
-class SermonCategory extends \yii\db\ActiveRecord
+class Group extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return 'sermon_category';
+        return 'group';
     }
 
     public function rules()
