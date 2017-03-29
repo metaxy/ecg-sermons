@@ -72,11 +72,22 @@ class SermonController extends JsonController
      */
     public function actionCreate()
     {
-        $sermon = new Sermon();
+        //todo: check hmac
 
-        if ($sermon->load(\Yii::$app->request->post()) && $sermon->save()) {
+        $sermon = new Sermon();
+        $post = \Yii::$app->request->post();
+        $sermon->title = $post['title'];
+        $sermon->speaker = $post['speaker'];
+        $sermon->date = $post['date'];
+        $sermon->seriesName = $post['seriesName'];
+        $sermon->files = $post['files'];
+        $sermon->scriptures = $post['scriptures'];
+
+        if ($sermon->save()) {
+            \Yii::warning(var_dump($post));
             return ['response' => 'ok'];
         } else {
+            \Yii::error(var_dump($post));
             throw new BadRequestHttpException($sermon->errors);
         }
     }
