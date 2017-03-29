@@ -1,0 +1,18 @@
+---
+- hosts: ecg
+  tasks:
+    - name: Deploy Git
+      git:
+        repo: 'https://github.com/metaxy/ecg-sermons.git'
+        dest: "{{sermons_api_path}}"
+        version: master
+    - name: Composer install
+      composer:
+        command: install
+        working_dir: "{{sermons_api_path}}"
+
+    - name: Run migrations
+      shell: "php yii migrate/up --interactive=0"
+      args:
+        chdir: "{{ sermons_api_path }}"
+

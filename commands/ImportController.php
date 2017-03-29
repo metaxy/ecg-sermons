@@ -24,7 +24,7 @@ class ImportController extends Controller
             }
         }
 
-        $m8 = ['1' => 'predigt', '2' => 'seminar', '3' => 'jugend'];
+        $m8 = ['1' => 'predigt', '2' => 'jugend', '3' => 'seminar'];
         foreach ($m8 as $id => $code) {
             $group = Group::findOne(['code' => $code]);
 
@@ -40,7 +40,18 @@ class ImportController extends Controller
                 $sermon->speaker = $item['speaker'];
                 //$sermon->language = [];
                 $sermon->seriesName = $item['seriesName'];
-               // $sermon->groupId = $group->id;
+                $sermon->scripture= [
+                    'text' => $item['text'],
+                    'order' => $item['scriptureData']
+                ];
+
+                //TODO make absolute
+                $sermon->files = [
+                    'audio' => $item['audio'],
+                    'video' => $item['video'],
+                    'other' => $item['other']
+                ];
+                $sermon->groupId = $group->id;
 
                 if(!$sermon->save()) {
                     print_r($sermon->errors);

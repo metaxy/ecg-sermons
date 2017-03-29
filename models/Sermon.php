@@ -12,7 +12,9 @@ namespace app\models;
  * @property string $picture
  * @property string $notes
  * @property string $filesJson
- * @property string $scripture
+ * @property array $files
+ * @property array $scripture
+ * @property string $scriptureJson
  * @property string $date
  * @property integer $hits
  * @property string $seriesName
@@ -31,7 +33,7 @@ class Sermon extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'speaker'], 'required'],
+            [['title', 'speaker', 'groupId'], 'required'],
             [['title', 'language', 'picture', 'notes', 'speaker', 'seriesName'], 'string'],
             [['hits', 'groupId'], 'integer'],
         ];
@@ -42,7 +44,7 @@ class Sermon extends \yii\db\ActiveRecord
      */
     public function getGroup()
     {
-        return $this->hasOne(Group::className(), ['groupId' => 'id']);
+        return $this->hasOne(Group::className(), ['id' => 'groupId']);
     }
 
     public function getFiles()

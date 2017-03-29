@@ -3,7 +3,7 @@ namespace app\controllers;
 
 use app\models\Sermon;
 
-class SermonController extends MHController
+class SermonController extends JsonController
 {
 
 
@@ -25,18 +25,46 @@ class SermonController extends MHController
      */
     public function actionList()
     {
-        $query = [];
-        $queryData = [];
         if(isset($_GET['query'])) {
             $queryData = $_GET['query'];
         } else {
             $queryData = \Yii::$app->request->post();
         }
+
+        $sermons = Sermon::find();
         if(isset($queryData['groupCode'])) {
-            $query['group.code'] = intval($queryData['groupCode']);
+            $sermons = $sermons->joinWith('group')->andWhere(['group.code' => $queryData['groupCode']]);
         }
-        $sermons = Sermon::find()->joinWith('group')->where($query);
-        return ['response' => $sermons->all()];
+        if(isset($queryData['seriesName'])) {
+            $sermons = $sermons->andWhere(['like', 'seriesName', $queryData['seriesName']]);
+        }
+        if(isset($queryData['title'])) {
+            $sermons = $sermons->andWhere(['like', 'title', $queryData['title']]);
+        }
+        if(isset($queryData['speaker'])) {
+            $sermons = $sermons->andWhere(['like', 'speaker', $queryData['speaker']]);
+        }
+
+        return $this->sermonList($sermons);
+    }
+
+    private function sermonList($query)
+    {
+        $ret = [];
+        foreach($query->each() as $sermon) {
+            /** @var Sermon $sermon */
+            $item = [
+                'title' => $sermon->title,
+                'audio' => $sermon->files['audio'],
+                'video' => $sermon->files['video'],
+                'other' => $sermon->files['video'],
+                'speaker' => $sermon->speaker,
+                'seriesName' => $sermon->seriesName,
+                'scripture' => $sermon->scripture['text']
+            ];
+            $ret[] = $item;
+        }
+        return $ret;
     }
 
     /**

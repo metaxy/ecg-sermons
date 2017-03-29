@@ -1,0 +1,7 @@
+---
+- hosts: ecg
+  vars:
+    ansible_user: root
+  tasks:
+  roles:
+    - geerlingguy.composer
