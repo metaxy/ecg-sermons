@@ -33,16 +33,10 @@ phpunit.phar
 /phpunit.xml
 .phpcomplete_extended/
 
-config/db_local.php
+config/db.php
 config/debug.php
 config/debug2.php
 config/assets-prod.php
-config/mail_local.php
-
-migrate-redo.sh
-dev.sh
-npm-debug.log
-
-*.jar
+config/mail.php
 
 ansible/*.retry

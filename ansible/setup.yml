@@ -1,7 +1,29 @@
 ---
 - hosts: ecg
-  vars:
-    ansible_user: root
   tasks:
-  roles:
-    - geerlingguy.composer
+    - name: Clean
+      file:
+        path: "{{sermons_api_path}}"
+        state: absent
+
+    - name: Deploy Git
+      git:
+        repo: 'https://github.com/metaxy/ecg-sermons.git'
+        dest: "{{sermons_api_path}}"
+        version: master
+    - name: Copy db
+      template:
+        src: ../config/db.j2
+        dest: "{{sermons_api_path}}/config/db.php"
+    - name: Creates Assets Dir
+      file:
+        path: "{{ sermons_api_path }}/web/assets"
+        state: directory
+        mode: 0775
+    - name: Creates Assets Dir
+      file:
+        path: "{{ sermons_api_path }}/runtime"
+        state: directory
+        mode: 0775
+    - name: Composer Global Plugin
+      shell: composer global require "fxp/composer-asset-plugin:~1.1.1"

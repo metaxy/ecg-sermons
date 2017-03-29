@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=127.0.0.1;dbname=sermons',
-    'username' => 'test',
-    'password' => 'root',
+    'dsn' => 'mysql:host=127.0.0.1;dbname={{sermons_api_db_name}}',
+    'username' => '{{sermons_api_db_user}}',
+    'password' => '{{sermons_api_db_password}}',
     'charset' => 'utf8',
     'enableSchemaCache' => false,
     // Duration of schema cache.
@@ -12,3 +12,4 @@ return [
     // Name of the cache component used to store schema information
     'schemaCache' => 'cache',
 ];
+ 
