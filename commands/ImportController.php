@@ -41,7 +41,7 @@ class ImportController extends Controller
                 //$sermon->language = [];
                 $sermon->seriesName = $item['seriesName'];
                 $sermon->scripture= [
-                    'text' => $item['text'],
+                    'text' => $item['scripture'],
                     'order' => $item['scriptureData']
                 ];
 

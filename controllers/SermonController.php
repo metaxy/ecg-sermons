@@ -73,6 +73,7 @@ class SermonController extends JsonController
     public function actionCreate()
     {
         $sermon = new Sermon();
+
         if ($sermon->load(\Yii::$app->request->post()) && $sermon->save()) {
             return ['response' => 'ok'];
         } else {
