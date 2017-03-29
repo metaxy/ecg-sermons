@@ -8,13 +8,14 @@ namespace app\models;
  *
  * @property string $title
  * @property integer $groupId
- * @property string $language
+ * @property string $languagesJson
+ * @property array $languages
  * @property string $picture
  * @property string $notes
  * @property string $filesJson
  * @property array $files
- * @property array $scripture
- * @property string $scriptureJson
+ * @property array $scriptures
+ * @property string $scripturesJson
  * @property string $date
  * @property integer $hits
  * @property string $seriesName
@@ -34,7 +35,7 @@ class Sermon extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'speaker', 'groupId'], 'required'],
-            [['title', 'language', 'picture', 'notes', 'speaker', 'seriesName'], 'string'],
+            [['title', 'languagesJson', 'picture', 'notes', 'speaker', 'seriesName'], 'string'],
             [['hits', 'groupId'], 'integer'],
         ];
     }
@@ -70,5 +71,18 @@ class Sermon extends \yii\db\ActiveRecord
     public function setScriptures($response)
     {
         $this->scripturesJson = json_encode($response);
+    }
+
+    public function getLanguages()
+    {
+        $data = json_decode($this->languagesJson, true);
+        if ($data === false) {
+            return [];
+        }
+        return $data;
+    }
+    public function setLanguages($response)
+    {
+        $this->languagesJson = json_encode($response);
     }
 }

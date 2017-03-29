@@ -40,10 +40,15 @@ class ImportController extends Controller
                 $sermon->speaker = $item['speaker'];
                 //$sermon->language = [];
                 $sermon->seriesName = $item['seriesName'];
-                $sermon->scripture= [
-                    'text' => $item['scripture'],
-                    'order' => $item['scriptureData']
-                ];
+                if(isset($item['scripture'])) {
+                    $sermon->scriptures = [
+                        'text' => $item['scripture'],
+                        'order' => $item['scriptureData']
+                    ];
+                } else {
+                    $sermon->scriptures = [];
+                }
+
 
                 //TODO make absolute
                 $sermon->files = [

@@ -19,13 +19,13 @@ class m170116_145747_create_sermon_table extends Migration
             'date' => $this->date(),
             'hits' => $this->integer(),
             'title' => $this->string(),
-            'languageJson' => $this->text(),
+            'languagesJson' => $this->text(),
             'speaker' => $this->string(),
 
             'picture' => $this->string(),
             'notes' => $this->text(),
             'filesJson' => $this->text(),
-            'scripture' => $this->string(),
+            'scripturesJson' => $this->text(),
             'seriesName' => $this->string()
         ]);
 
