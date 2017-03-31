@@ -23,9 +23,9 @@ class SermonController extends JsonController
      */
     public function actionList()
     {
-        $filter = \Yii::$app->request->getBodyParam('filter', []);
-        $sort = \Yii::$app->request->getBodyParam('sort', []);
-        $limit = \Yii::$app->request->getBodyParam('limit', 0);
+        $filter = isset($_REQUEST['filter']) ? $_REQUEST['filter'] : [];
+        $sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : [];
+        $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 0;
 
         $sermons = Sermon::find();
         if(isset($filter['groupCode'])) {
@@ -44,7 +44,15 @@ class SermonController extends JsonController
             $sermons = $sermons->limit($limit);
         }
         if(!empty($sort)) {
-            $sermons = $sermons->orderBy($sort);
+            $s = [];
+            foreach($sort as $key => $order) {
+                if($order === "asc") {
+                    $s[$key] = SORT_ASC;
+                } else {
+                    $s[$key] = SORT_DESC;
+                }
+            }
+            $sermons = $sermons->orderBy($s);
         }
 
 
