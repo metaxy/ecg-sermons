@@ -40,6 +40,9 @@ class SermonController extends JsonController
         if(isset($filter['speaker'])) {
             $sermons = $sermons->andWhere(['like', 'speaker', $filter['speaker']]);
         }
+        if(isset($filter['id'])) {
+            $sermons = $sermons->andWhere(['id', $filter['id']]);
+        }
         if($limit != 0) {
             $sermons = $sermons->limit($limit);
         }

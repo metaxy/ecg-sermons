@@ -6,6 +6,7 @@ namespace app\models;
  * Class Sermon
  * @package app\models
  *
+ * @property integer $id
  * @property string $title
  * @property integer $groupId
  * @property string $languagesJson
