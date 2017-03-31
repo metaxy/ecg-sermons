@@ -62,7 +62,7 @@ class SermonController extends JsonController
     private function sermonList($query)
     {
         $ret = [];
-        foreach($query->each() as $sermon) {
+        foreach($query->joinWith('group')->each() as $sermon) {
             /** @var Sermon $sermon */
             $item = [
                 'title' => $sermon->title,
@@ -74,6 +74,7 @@ class SermonController extends JsonController
                 'date' => $sermon->date,
                 'realDate' => $sermon->date,
                 'scripture' => $sermon->scriptures['text'],
+                'groupCode' => $sermon->group->code
             ];
             $ret[] = $item;
         }
