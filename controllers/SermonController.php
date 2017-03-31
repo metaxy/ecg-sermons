@@ -23,11 +23,6 @@ class SermonController extends JsonController
      */
     public function actionList()
     {
-        if(isset($_GET['query'])) {
-            $queryData = $_GET['query'];
-        } else {
-
-        }
         $filter = \Yii::$app->request->getBodyParam('filter', []);
         $sort = \Yii::$app->request->getBodyParam('sort', []);
         $limit = \Yii::$app->request->getBodyParam('limit', 0);
