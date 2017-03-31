@@ -2,7 +2,6 @@
 namespace app\components;
 use Yii;
 
-use yii\debug\models\search\Log;
 use yii\log\Logger;
 use yii\log\Target;
 

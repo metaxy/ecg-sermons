@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "75c04acfe27b90b5fd0810632fa78a98",
+    "content-hash": "fcc72f91dcd2d3b9579eaf5546718d20",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -213,6 +213,53 @@
             "time": "2016-12-11 13:37:11"
         },
         {
+            "name": "datadog/php-datadogstatsd",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataDog/php-datadogstatsd.git",
+                "reference": "bbec5ea0049604c93f932cec45324a046b1acb1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataDog/php-datadogstatsd/zipball/bbec5ea0049604c93f932cec45324a046b1acb1c",
+                "reference": "bbec5ea0049604c93f932cec45324a046b1acb1c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "libraries/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Corley",
+                    "email": "anthroprose@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Datadog",
+                    "email": "dev@datadoghq.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is an extremely simple PHP datadogstatsd client",
+            "homepage": "https://www.datadoghq.com/",
+            "keywords": [
+                "DataDog",
+                "php"
+            ],
+            "time": "2015-07-27T19:08:40+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.9.2",
             "source": {
@@ -260,17 +307,66 @@
             "time": "2017-03-13T06:30:53+00:00"
         },
         {
+            "name": "metaxy/php-functional",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/metaxy/php-functional.git",
+                "reference": "58079bb669e3679f37d630089abfddad9d4d6c8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/metaxy/php-functional/zipball/58079bb669e3679f37d630089abfddad9d4d6c8d",
+                "reference": "58079bb669e3679f37d630089abfddad9d4d6c8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "dydro/benchmark": "dev-master",
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functional.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Walger",
+                    "email": "metaxy@walger.name",
+                    "homepage": "http://usrportage.de"
+                }
+            ],
+            "description": "Functional primitives for PHP",
+            "keywords": [
+                "functional"
+            ],
+            "time": "2015-05-12 11:15:26"
+        },
+        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "ec2697bbdd0447a1b16be8e2c25f19a405e68d0d"
+                "reference": "c72dc83fc3f1fdf09770740863d7c8be5765c7d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ec2697bbdd0447a1b16be8e2c25f19a405e68d0d",
-                "reference": "ec2697bbdd0447a1b16be8e2c25f19a405e68d0d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c72dc83fc3f1fdf09770740863d7c8be5765c7d7",
+                "reference": "c72dc83fc3f1fdf09770740863d7c8be5765c7d7",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +453,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-03-24 11:18:05"
+            "time": "2017-03-30 14:28:26"
         },
         {
             "name": "yiisoft/yii2-composer",
