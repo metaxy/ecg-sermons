@@ -26,8 +26,25 @@ $config = [
             'traceLevel' => 3,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => 'yii\log\SyslogTarget',
                     'levels' => ['error', 'warning'],
+                    'except' => [
+                        'yii\web\HttpException:404',
+                        'yii\web\HttpException:403',
+                    ],
+
+                ],
+                [
+                    'class' => 'app\components\DatadogTarget',
+                    'levels' => ['error', 'warning'],
+                    'except' => [
+                        'yii\web\HttpException:404',
+                        'yii\web\HttpException:403',
+                    ],
+                    'tags' => ['bko'],
+                    'apiKey' => $params['datadog']['apiKey'],
+                    'appKey' => $params['datadog']['appKey'],
+
                 ],
 
             ],
