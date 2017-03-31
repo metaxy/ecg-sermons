@@ -27,7 +27,7 @@ class SiteController extends JsonController
 
     public function actionIndex()
     {
-        echo 'Memberhive';
+        echo 'Sermons';
     }
 
 

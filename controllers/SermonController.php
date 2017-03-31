@@ -60,7 +60,7 @@ class SermonController extends JsonController
                 'other' => $sermon->files['video'],
                 'speaker' => $sermon->speaker,
                 'seriesName' => $sermon->seriesName,
-                'scripture' => $sermon->scripture['text']
+                //'scripture' => $sermon->scriptures['text']
             ];
             $ret[] = $item;
         }
@@ -76,6 +76,10 @@ class SermonController extends JsonController
 
         $sermon = new Sermon();
         $post = \Yii::$app->request->post();
+        if(empty($post)) {
+            return "no input";
+        }
+        \Yii::error(var_dump($post));
         $sermon->title = $post['title'];
         $sermon->speaker = $post['speaker'];
         $sermon->date = $post['date'];

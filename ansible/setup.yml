@@ -15,6 +15,10 @@
       template:
         src: ../config/db.j2
         dest: "{{sermons_api_path}}/config/db.php"
+    - name: Copy params
+      template:
+        src: ../config/params.j2
+        dest: "{{sermons_api_path}}/config/params.php"
     - name: Creates Assets Dir
       file:
         path: "{{ sermons_api_path }}/web/assets"

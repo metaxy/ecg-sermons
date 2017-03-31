@@ -35,8 +35,6 @@ phpunit.phar
 
 config/db.php
 config/debug.php
-config/debug2.php
-config/assets-prod.php
 config/mail.php
 
 ansible/*.retry

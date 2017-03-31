@@ -1,3 +1,5 @@
 ---
 sermons_api_path: /var/www/vhosts/ecg-berlin.de/sermons-api-hellersdorf
+datadog_api_key: d2a9d1ddf1372695dc1c6cd392f81703
+datadog_app_key: 09d261510a45990f4f7877aa363edcd47305b152
 
