@@ -11,7 +11,9 @@
     "require": {
         "php": ">=5.6.0",
         "ext-mbstring": "*",
-        "yiisoft/yii2": ">=2.0.5"
+        "yiisoft/yii2": ">=2.0.5",
+        "datadog/php-datadogstatsd": "0.3.*",
+        "metaxy/php-functional": "*"
     },
     "require-dev": {
     },

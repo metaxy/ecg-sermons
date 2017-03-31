@@ -19,12 +19,12 @@
       template:
         src: ../config/params.j2
         dest: "{{sermons_api_path}}/config/params.php"
-    - name: Creates Assets Dir
+    - name: Create assets dir
       file:
         path: "{{ sermons_api_path }}/web/assets"
         state: directory
         mode: 0775
-    - name: Creates Assets Dir
+    - name: Create runtime dir
       file:
         path: "{{ sermons_api_path }}/runtime"
         state: directory
