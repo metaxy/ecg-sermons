@@ -63,7 +63,9 @@ class SermonController extends JsonController
                 'other' => $sermon->files['video'],
                 'speaker' => $sermon->speaker,
                 'seriesName' => $sermon->seriesName,
-                //'scripture' => $sermon->scriptures['text']
+                'date' => $sermon->date,
+                'realDate' => $sermon->date,
+                'scripture' => $sermon->scriptures['text'],
             ];
             $ret[] = $item;
         }
