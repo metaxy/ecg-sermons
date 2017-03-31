@@ -5,18 +5,6 @@ use app\models\Sermon;
 
 class SermonController extends JsonController
 {
-
-    public function behaviors() {
-        $behaviors = parent::behaviors();
-        $behaviors['corsFilter'] = [
-            'class' => Cors::className(),
-            'cors' => [
-                'Origin' => ['*'],
-            ],
-        ];
-
-        return $behaviors;
-    }
     /**
      * @param $id
      * @return array
