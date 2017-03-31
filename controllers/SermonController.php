@@ -27,9 +27,9 @@ class SermonController extends JsonController
         $sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : [];
         $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 0;
 
-        $sermons = Sermon::find();
+        $sermons = Sermon::find()->joinWith('group');
         if(isset($filter['groupCode'])) {
-            $sermons = $sermons->joinWith('group')->andWhere(['group.code' => $filter['groupCode']]);
+            $sermons = $sermons->andWhere(['group.code' => $filter['groupCode']]);
         }
         if(isset($filter['seriesName'])) {
             $sermons = $sermons->andWhere(['like', 'seriesName', $filter['seriesName']]);
@@ -41,7 +41,7 @@ class SermonController extends JsonController
             $sermons = $sermons->andWhere(['like', 'speaker', $filter['speaker']]);
         }
         if(isset($filter['id'])) {
-            $sermons = $sermons->andWhere(['id', $filter['id']]);
+            $sermons = $sermons->andWhere(['id' => $filter['id']]);
         }
         if($limit != 0) {
             $sermons = $sermons->limit($limit);
@@ -65,7 +65,7 @@ class SermonController extends JsonController
     private function sermonList($query)
     {
         $ret = [];
-        foreach($query->joinWith('group')->each() as $sermon) {
+        foreach($query->each() as $sermon) {
             /** @var Sermon $sermon */
             $item = [
                 'id' => $sermon->id,
