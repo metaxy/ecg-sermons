@@ -1,0 +1,9 @@
+---
+- hosts: ecg
+  tasks:
+
+    - name: Run migrations
+      shell: "php yii import/import"
+      args:
+        chdir: "{{ sermons_api_path }}"
+

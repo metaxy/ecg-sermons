@@ -44,7 +44,6 @@ class SermonController extends JsonController
         if(isset($queryData['speaker'])) {
             $sermons = $sermons->andWhere(['like', 'speaker', $queryData['speaker']]);
         }
-        \Yii::error(var_dump($queryData));
 
         return $this->sermonList($sermons);
     }
@@ -80,7 +79,6 @@ class SermonController extends JsonController
         if(empty($post)) {
             return "no input";
         }
-        \Yii::error(var_dump($post));
         $sermon->title = $post['title'];
         $sermon->speaker = $post['speaker'];
         $sermon->date = $post['date'];

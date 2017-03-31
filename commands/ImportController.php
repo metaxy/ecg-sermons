@@ -52,9 +52,9 @@ class ImportController extends Controller
 
                 //TODO make absolute
                 $sermon->files = [
-                    'audio' => $this->makeAbsolute($item['audio']),
-                    'video' =>  $this->makeAbsolute($item['video']),
-                    'other' => $this->makeAbsolute($item['other'])
+                    'audio' => $this->makeAbsoluteArray($item['audio']),
+                    'video' =>  $this->makeAbsoluteArray($item['video']),
+                    'other' => $this->makeAbsoluteArray($item['other'])
                 ];
                 $sermon->groupId = $group->id;
 
@@ -67,14 +67,17 @@ class ImportController extends Controller
         }
     }
 
-    private function makeAbsolute($url)
+    private function makeAbsoluteArray($urls)
     {
-        if(startsWith('/', $url)) {
-            return "http://ecg-berlin.de".$url;
-        } else if(startsWith('http', $url)) {
-            return $url;
-        } else {
-            return "http://ecg-berlin.de/".$url;
-        }
+        return array_map(function ($url) {
+            if(startsWith('/', $url)) {
+                return "http://ecg-berlin.de".$url;
+            } else if(startsWith('http', $url)) {
+                return $url;
+            } else {
+                return "http://ecg-berlin.de/".$url;
+            }
+        }, $urls);
     }
+
 }
