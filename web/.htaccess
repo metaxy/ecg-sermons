@@ -4,3 +4,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # Otherwise forward it to index.php
 RewriteRule . index.php
+
+Header always set Access-Control-Allow-Origin: "*"
+Header always set Access-Control-Allow-Credentials: true
+Header always set Access-Control-Allow-Methods "POST, GET, PUT, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Authorization,X-Requested-With, content-type"

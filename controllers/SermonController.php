@@ -6,7 +6,17 @@ use app\models\Sermon;
 class SermonController extends JsonController
 {
 
+    public function behaviors() {
+        $behaviors = parent::behaviors();
+        $behaviors['corsFilter'] = [
+            'class' => Cors::className(),
+            'cors' => [
+                'Origin' => ['*'],
+            ],
+        ];
 
+        return $behaviors;
+    }
     /**
      * @param $id
      * @return array
@@ -28,22 +38,32 @@ class SermonController extends JsonController
         if(isset($_GET['query'])) {
             $queryData = $_GET['query'];
         } else {
-            $queryData = \Yii::$app->request->post();
+
         }
+        $filter = \Yii::$app->request->getBodyParam('filter', []);
+        $sort = \Yii::$app->request->getBodyParam('sort', []);
+        $limit = \Yii::$app->request->getBodyParam('limit', 0);
 
         $sermons = Sermon::find();
-        if(isset($queryData['groupCode'])) {
-            $sermons = $sermons->joinWith('group')->andWhere(['group.code' => $queryData['groupCode']]);
+        if(isset($filter['groupCode'])) {
+            $sermons = $sermons->joinWith('group')->andWhere(['group.code' => $filter['groupCode']]);
         }
-        if(isset($queryData['seriesName'])) {
-            $sermons = $sermons->andWhere(['like', 'seriesName', $queryData['seriesName']]);
+        if(isset($filter['seriesName'])) {
+            $sermons = $sermons->andWhere(['like', 'seriesName', $filter['seriesName']]);
         }
-        if(isset($queryData['title'])) {
-            $sermons = $sermons->andWhere(['like', 'title', $queryData['title']]);
+        if(isset($filter['title'])) {
+            $sermons = $sermons->andWhere(['like', 'title', $filter['title']]);
         }
-        if(isset($queryData['speaker'])) {
-            $sermons = $sermons->andWhere(['like', 'speaker', $queryData['speaker']]);
+        if(isset($filter['speaker'])) {
+            $sermons = $sermons->andWhere(['like', 'speaker', $filter['speaker']]);
         }
+        if($limit != 0) {
+            $sermons = $sermons->limit($limit);
+        }
+        if(!empty($sort)) {
+            $sermons = $sermons->orderBy($sort);
+        }
+
 
         return $this->sermonList($sermons);
     }
