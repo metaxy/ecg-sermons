@@ -65,6 +65,7 @@ class SermonController extends JsonController
         foreach($query->joinWith('group')->each() as $sermon) {
             /** @var Sermon $sermon */
             $item = [
+                'id' => $sermon->id,
                 'title' => $sermon->title,
                 'audio' => $sermon->files['audio'],
                 'video' => $sermon->files['video'],
