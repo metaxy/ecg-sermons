@@ -41,22 +41,52 @@ http://localhost/bko3/web/
 ## Neue API
 
 ## Auflisten
+`https://sermons-api-hellersdorf.ecg-berlin.de/sermon/list`
+ 
 Filter: 
 ```
-query[categoryId] :: int[]|int
-query[language] :: int[]|int
-query[title] :: string
-query[date] :: string
-query[speaker] :: string[] | string
-query[seriesName] :: string
+filter[groupCode] :: string | string[]
+filter[title] :: string
+filter[date] :: string
+filter[speaker] :: string | string []
+filter[seriesName] :: string
+filter[id] :: integer | integer[]
 ```
 
- `/sermon/list`
+Sort: 
+```
+sort[date] = "asc" | "desc"
+sort[speaker] = "asc" | "desc"
+sort[hits] = "asc" | "desc"
+sort[title] = "asc" | "desc"
+```
+
+Limit:
+```
+limit = integer
+```
+
+Diese Parameter werden entweder per GET oder POST body angenommen.
+
+Beispiel:
+`https://sermons-api-hellersdorf.ecg-berlin.de/sermon/list?filter[groupCode]=predigt&filter[speaker]=Theo&sort[hits]=desc&limit=10`
+
 Ausgabe: 
 ```
 [
     {
-        "title": ""
+        "id": integer,
+        "title": string
+        "audio" : string[] (absolute url)
+        "video" : string[] (absolute url)
+        "other" : string[] (absolute url)
+        "speaker": string
+        "seriesName": string
+        "date" :string (formatted)
+        "realDate" : string (ISO 8601 date)
+        "scripture": string
+        "groupCode": string
+
     }
 ]
 ``` 

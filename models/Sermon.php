@@ -69,6 +69,7 @@ class Sermon extends \yii\db\ActiveRecord
         }
         return $data;
     }
+
     public function setScriptures($response)
     {
         $this->scripturesJson = json_encode($response);
