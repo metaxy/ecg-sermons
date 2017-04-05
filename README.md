@@ -66,6 +66,12 @@ Limit:
 limit = integer
 ```
 
+
+Offset:
+```
+offset = integer
+```
+
 Diese Parameter werden entweder per GET oder POST body angenommen.
 
 Beispiel:

@@ -26,6 +26,7 @@ class SermonController extends JsonController
         $filter = isset($_REQUEST['filter']) ? $_REQUEST['filter'] : [];
         $sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : [];
         $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 0;
+        $offset = isset($_REQUEST['offset']) ? $_REQUEST['offset'] : 0;
 
         $sermons = Sermon::find()->joinWith('group');
         if(isset($filter['groupCode'])) {
@@ -46,6 +47,11 @@ class SermonController extends JsonController
         if($limit != 0) {
             $sermons = $sermons->limit($limit);
         }
+
+        if($offset != 0)  {
+            $sermons = $sermons->offset($offset);
+        }
+
         if(!empty($sort)) {
             $s = [];
             foreach($sort as $key => $order) {
